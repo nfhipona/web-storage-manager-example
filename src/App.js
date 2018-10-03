@@ -64,6 +64,25 @@ class App extends Component {
     const keyPaths2 = [ 'targetKeyOnParent', 'collection', 'targetObject', 'changethis2']
     Storage.updateItemInItem('test-sample', keyPaths, valueInObj, 'id')
     Storage.updateItemInItem('test-sample', keyPaths2, valueInObj)
+
+    // append
+    Storage.appendItem('test-sample', { new_item : { desc: 'new test item' } })
+
+    // save multiple
+    Storage.setMultiple([
+      {
+        key: 'multiple-save-1',
+        value: 'multiple-save-data-1'
+      },
+      {
+        key: 'multiple-save-2',
+        value: ['multiple-save-data-2', 'multiple-save-data-2']
+      },{
+        key: 'multiple-save-3',
+        value: { desc: 'multiple-save-data-3' }
+      }
+    ])
+
   }
 
   render() {
