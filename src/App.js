@@ -1,8 +1,71 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Storage from 'web-storage-manager';
 
 class App extends Component {
+
+  componentWillMount() {
+
+    // updateItemInItem example
+    const testItems = [
+      {
+        id: 1,
+        value: '777',
+        description: 'test item 1'
+      }, {
+        id: 2,
+        value: '888',
+        description: 'test item 2'
+      }, {
+        id: 3,
+        value: '999',
+        description: 'test item 3'
+      }
+    ]
+
+    const testOjb = {
+      name: 'Object',
+      value: 'target of change',
+      description: 'test item for object type'
+    }
+
+    const tObj = {
+      'changethis': testItems, // key of this
+      'changethis2': testOjb // key of this
+    }
+
+    let collection = {
+      name: 'The data where our target object was saved',
+      'targetObject': tObj // key of this
+    }
+
+    let collectionInfo = {
+      description: 'just another layer for testing',
+      'collection': collection // key of this
+    }
+
+    let parentItem = {
+      name: 'parent item',
+      description: 'test object',
+      'targetKeyOnParent': collectionInfo // key of this
+    }
+
+    Storage.setItem('test-sample', parentItem);
+    Storage.setItem('test-sample-for-compare', parentItem);
+
+    const valueInObj = {
+      id: 2,
+      value: '010',
+      description: 'test item 101'
+    }
+
+    const keyPaths = [ 'targetKeyOnParent', 'collection', 'targetObject', 'changethis']
+    const keyPaths2 = [ 'targetKeyOnParent', 'collection', 'targetObject', 'changethis2']
+    Storage.updateItemInItem('test-sample', keyPaths, valueInObj, 'id')
+    Storage.updateItemInItem('test-sample', keyPaths2, valueInObj)
+  }
+
   render() {
     return (
       <div className="App">
