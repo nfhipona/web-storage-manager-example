@@ -61,9 +61,21 @@ class App extends Component {
     }
 
     const keyPaths = [ 'targetKeyOnParent', 'collection', 'targetObject', 'changethis']
-    const keyPaths2 = [ 'targetKeyOnParent', 'collection', 'targetObject', 'changethis2']
     Storage.updateItemInItem('test-sample', keyPaths, valueInObj, 'id')
+    
+    const keyPaths2 = [ 'targetKeyOnParent', 'collection', 'targetObject', 'changethis2']
     Storage.updateItemInItem('test-sample', keyPaths2, valueInObj)
+    
+    const keyPaths3 = [ 'targetKeyOnParent', 'collection', 'targetObject2']
+    Storage.updateItemInItem('test-sample', keyPaths3, testItems)
+
+    const valueInObj2 = {
+      id: 1,
+      value: '015',
+      description: 'test item 151'
+    }
+    const keyPaths4 = [ 'targetKeyOnParent', 'collection', 'targetObject2']
+    Storage.updateItemInItem('test-sample', keyPaths4, valueInObj2)
 
     // append
     Storage.appendItem('test-sample', { new_item : { desc: 'new test item' } })
