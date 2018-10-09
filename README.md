@@ -100,10 +100,10 @@ class App extends Component {
 
     const keyPaths = [ 'targetKeyOnParent', 'collection', 'targetObject', 'changethis']
     Storage.updateItemInItem('test-sample', keyPaths, valueInObj, 'id')
-    
+
     const keyPaths2 = [ 'targetKeyOnParent', 'collection', 'targetObject', 'changethis2']
     Storage.updateItemInItem('test-sample', keyPaths2, valueInObj)
-    
+
     const keyPaths3 = [ 'targetKeyOnParent', 'collection', 'targetObject2']
     Storage.updateItemInItem('test-sample', keyPaths3, testItems)
 
@@ -187,4 +187,4 @@ This project was inpired by 'react-persist' that was discontinued.
 
 ## License
 
-AutoCompleteTextField is available under the MIT license. See the [LICENSE](https://github.com/nferocious76/web-storage-manager/blob/master/LICENSE) file for more info.
+`Web Storage Manager` is available under the MIT license. See the [LICENSE](https://github.com/nferocious76/web-storage-manager/blob/master/LICENSE) file for more info.
