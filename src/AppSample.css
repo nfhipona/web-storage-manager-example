@@ -1,0 +1,24 @@
+.InputTitle {
+    height: 20vmin;
+    font-size: calc(20px + 2vmin);
+    color: black;
+}
+
+.ParentKey {
+    width: 15%;
+}
+
+.InputField {
+    height: 25vh;
+    width: 50%;
+}
+
+.InputField2 {
+    height: 5vh;
+    width: 50%;
+}
+
+.InputField3 {
+    height: 15vh;
+    width: 50%;
+}
