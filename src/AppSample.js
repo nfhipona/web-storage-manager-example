@@ -62,7 +62,7 @@ const defaultJson = {
 }
 
 const cKeys = {
-    keys: 'targetKeyOnParent, collection, targetObject, changethis',
+    keys: ['targetKeyOnParent', 'collection', 'targetObject', 'changethis'],
     attrib: 'id'
 };
 
@@ -146,7 +146,7 @@ class AppSample extends Component {
 
         let cKeys = this.state.cKeys;
         let cKeysObj = JSON.parse(cKeys);
-        let keys = cKeysObj.keys.split(',');
+        let keys = cKeysObj.keys;
         let attrib = cKeysObj.attrib;
 
         console.log(`attrib: ${attrib} - keys: `, keys)
