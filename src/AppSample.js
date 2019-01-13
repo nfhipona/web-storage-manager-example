@@ -79,6 +79,8 @@ class AppSample extends Component {
 
     constructor(props) {
         super(props);
+
+        console.log('Storage: ', Storage);
         
         this.state = {
             parentKey: 'web-storage-manager-sample',
@@ -135,11 +137,7 @@ class AppSample extends Component {
         let rValue = this.state.rValue;
         let val = JSON.parse(rValue);
 
-        if (this.state.isEncoded) {
-            Storage.appendEncodeItem(this.state.parentKey, val);
-        }else{
-            Storage.appendItem(this.state.parentKey, val);
-        }
+        Storage.appendItem(this.state.parentKey, val);
     }
 
     updateItemInItem(e) {
@@ -150,14 +148,12 @@ class AppSample extends Component {
         let attrib = cKeysObj.attrib;
 
         console.log(`attrib: ${attrib} - keys: `, keys)
+        
         let rValue = this.state.rValue;
         let val = JSON.parse(rValue);
+
         console.log(`val: `, val)
-        if (this.state.isEncoded) {
-            Storage.updateEncodeItemInItem(this.state.parentKey, keys, val, attrib);
-        }else{
-            Storage.updateItemInItem(this.state.parentKey, keys, val, attrib);
-        }
+        Storage.updateItemInItem(this.state.parentKey, keys, val, attrib);
     }
 
     parentKey(e) {

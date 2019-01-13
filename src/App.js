@@ -7,9 +7,7 @@ import AppSample from './AppSample';
 class App extends Component {
 
   componentWillMount() {
-
-    // this.testLib();
-    // this.testEncodeLib();
+    this.testLib()
   }
 
   testLib() {
@@ -63,7 +61,7 @@ class App extends Component {
 
     const valueInObj = {
       id: 2,
-      value: '010',
+      value: '01220',
       description: 'test item 101'
     }
 
@@ -87,114 +85,21 @@ class App extends Component {
     // append
     Storage.appendItem('test-sample', { new_item : { desc: 'new test item' } })
 
-    // save multiple
-    Storage.setMultiple([
-      {
-        key: 'multiple-save-1',
-        value: 'multiple-save-data-1'
-      },
-      {
-        key: 'multiple-save-2',
-        value: ['multiple-save-data-2', 'multiple-save-data-2']
-      },{
-        key: 'multiple-save-3',
-        value: { desc: 'multiple-save-data-3' }
-      }
-    ])
+    // // save multiple
+    // Storage.setMultiple([
+    //   {
+    //     key: 'multiple-save-1',
+    //     value: 'multiple-save-data-1'
+    //   },
+    //   {
+    //     key: 'multiple-save-2',
+    //     value: ['multiple-save-data-2', 'multiple-save-data-2']
+    //   },{
+    //     key: 'multiple-save-3',
+    //     value: { desc: 'multiple-save-data-3' }
+    //   }
+    // ])
 
-  }
-
-  testEncodeLib() {
-    // updateItemInItem example
-    const testItems = [
-      {
-        id: 1,
-        value: '777',
-        description: 'test item 1'
-      }, {
-        id: 2,
-        value: '888',
-        description: 'test item 2'
-      }, {
-        id: 3,
-        value: '999',
-        description: 'test item 3'
-      }
-    ]
-
-    const testOjb = {
-      name: 'Object',
-      value: 'target of change',
-      description: 'test item for object type'
-    }
-
-    const tObj = {
-      'changethis': testItems, // key of this
-      'changethis2': testOjb // key of this
-    }
-
-    let collection = {
-      name: 'The data where our target object was saved',
-      'targetObject': tObj // key of this
-    }
-
-    let collectionInfo = {
-      description: 'just another layer for testing',
-      'collection': collection // key of this
-    }
-
-    let parentItem = {
-      name: 'parent item',
-      description: 'test object',
-      'targetKeyOnParent': collectionInfo // key of this
-    }
-
-    Storage.setEncodeItem('e-test-sample', parentItem);
-    Storage.setEncodeItem('e-test-sample-for-compare', parentItem);
-
-    const valueInObj = {
-      id: 2,
-      value: '010',
-      description: 'test item 101 update item in item'
-    }
-
-    const keyPaths = [ 'targetKeyOnParent', 'collection', 'targetObject', 'changethis']
-    Storage.updateEncodeItemInItem('e-test-sample', keyPaths, valueInObj, 'id')
-
-    const keyPaths2 = [ 'targetKeyOnParent', 'collection', 'targetObject', 'changethis2']
-    Storage.updateEncodeItemInItem('e-test-sample', keyPaths2, valueInObj)
-
-    const keyPaths3 = [ 'targetKeyOnParent', 'collection', 'targetObject2']
-    Storage.updateEncodeItemInItem('e-test-sample', keyPaths3, testItems)
-
-    const valueInObj2 = {
-      id: 1,
-      value: '015',
-      description: 'test item 151 update item in item'
-    }
-    const keyPaths4 = [ 'targetKeyOnParent', 'collection', 'targetObject2']
-    Storage.updateEncodeItemInItem('e-test-sample', keyPaths4, valueInObj2)
-
-    // append
-    Storage.appendEncodeItem('e-test-sample', { new_item : { desc: 'new test item' } })
-
-    // save multiple
-    Storage.setEncodeMultiple([
-      {
-        key: 'e-multiple-save-1',
-        value: 'multiple-save-data-1'
-      },
-      {
-        key: 'e-multiple-save-2',
-        value: ['multiple-save-data-2', 'multiple-save-data-2']
-      },{
-        key: 'e-multiple-save-3',
-        value: { desc: 'encode multiple-save-data-3' }
-      }
-    ])
-
-    const decodedValue = Storage.getEncodeItem('e-test-sample');
-    console.log(`decodedValue: `, decodedValue)
   }
 
   render() {
