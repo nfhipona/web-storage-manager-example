@@ -56,7 +56,7 @@ class App extends Component {
       'targetKeyOnParent': collectionInfo // key of this
     }
 
-    Storage.setItem('test-sample', parentItem);
+    Storage.setEncodeItem('test-sample', parentItem);
     Storage.setItem('test-sample-for-compare', parentItem);
 
     const valueInObj = {
@@ -85,7 +85,9 @@ class App extends Component {
     // append
     Storage.appendItem('test-sample', { new_item : { desc: 'new test item' } })
 
-    Storage.removeItemInItem('test-sample', keyPaths, valueInObj, 'id')
+    // Storage.removeItemInItem('test-sample', keyPaths, valueInObj, 'id')
+
+    Storage.setItem('copy', Storage.getItem('test-sample'))
 
     // // save multiple
     // Storage.setMultiple([
