@@ -85,6 +85,8 @@ class App extends Component {
     // append
     Storage.appendItem('test-sample', { new_item : { desc: 'new test item' } })
 
+    Storage.removeItemInItem('test-sample', keyPaths, valueInObj, 'id')
+
     // // save multiple
     // Storage.setMultiple([
     //   {
