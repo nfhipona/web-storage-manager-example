@@ -7,6 +7,11 @@ import AppSample from './AppSample';
 class App extends Component {
 
   componentWillMount() {
+
+    console.clear()
+    console.log(Storage)
+    console.log('\n\n')
+
     this.testLib()
   }
 
@@ -56,7 +61,7 @@ class App extends Component {
       'targetKeyOnParent': collectionInfo // key of this
     }
 
-    Storage.setEncodeItem('test-sample', parentItem);
+    Storage.setItem('test-sample', parentItem, true);
     Storage.setItem('test-sample-for-compare', parentItem);
 
     const valueInObj = {
@@ -85,24 +90,24 @@ class App extends Component {
     // append
     Storage.appendItem('test-sample', { new_item : { desc: 'new test item' } })
 
-    // Storage.removeItemInItem('test-sample', keyPaths, valueInObj, 'id')
+    Storage.removeItemInItem('test-sample', keyPaths, valueInObj, 'id')
 
     Storage.setItem('copy', Storage.getItem('test-sample'))
 
-    // // save multiple
-    // Storage.setMultiple([
-    //   {
-    //     key: 'multiple-save-1',
-    //     value: 'multiple-save-data-1'
-    //   },
-    //   {
-    //     key: 'multiple-save-2',
-    //     value: ['multiple-save-data-2', 'multiple-save-data-2']
-    //   },{
-    //     key: 'multiple-save-3',
-    //     value: { desc: 'multiple-save-data-3' }
-    //   }
-    // ])
+    // save multiple
+    Storage.setMultiple([
+      {
+        key: 'multiple-save-1',
+        value: 'multiple-save-data-1'
+      },
+      {
+        key: 'multiple-save-2',
+        value: ['multiple-save-data-2', 'multiple-save-data-2']
+      },{
+        key: 'multiple-save-3',
+        value: { desc: 'multiple-save-data-3' }
+      }
+    ])
 
   }
 
