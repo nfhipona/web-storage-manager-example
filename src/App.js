@@ -67,30 +67,29 @@ class App extends Component {
     const valueInObj = {
       id: 2,
       value: '01220',
-      description: 'test item 101'
+      description: 'test item 99999 4776 999'
     }
 
-    const keyPaths = [ 'targetKeyOnParent', 'collection', 'targetObject', 'changethis']
-    Storage.updateItemInItem('test-sample', keyPaths, valueInObj, 'id')
+    const keyPath = 'test-sample.targetKeyOnParent.collection.targetObject.changethis'
+    Storage.updateItemInItem(keyPath, valueInObj, 'id')
 
-    const keyPaths2 = [ 'targetKeyOnParent', 'collection', 'targetObject', 'changethis2']
-    Storage.updateItemInItem('test-sample', keyPaths2, valueInObj)
+    const keyPath2 = 'test-sample.targetKeyOnParent.collection.targetObject.changethis2'
+    Storage.updateItemInItem(keyPath2, valueInObj)
 
-    const keyPaths3 = [ 'targetKeyOnParent', 'collection', 'targetObject2']
-    Storage.updateItemInItem('test-sample', keyPaths3, testItems)
+    const keyPath3 = 'test-sample.targetKeyOnParent.collection.targetObject2'
+    Storage.updateItemInItem(keyPath3, testItems)
 
     const valueInObj2 = {
       id: 1,
       value: '015',
       description: 'test item 151'
     }
-    const keyPaths4 = [ 'targetKeyOnParent', 'collection', 'targetObject2']
-    Storage.updateItemInItem('test-sample', keyPaths4, valueInObj2)
+    const keyPath4 = 'test-sample.targetKeyOnParent.collection.targetObject2'
+    Storage.updateItemInItem(keyPath4, valueInObj2)
 
     // append
     Storage.appendItem('test-sample', { new_item : { desc: 'new test item' } })
-
-    Storage.removeItemInItem('test-sample', keyPaths, valueInObj, 'id')
+    Storage.removeItemInItem(keyPath, valueInObj, 'id')
 
     Storage.setItem('copy', Storage.getItem('test-sample'))
 
@@ -109,6 +108,8 @@ class App extends Component {
       }
     ])
 
+    console.log("test-sample: ", Storage.getItem('test-sample'));
+    console.log('\n\n');
   }
 
   render() {
