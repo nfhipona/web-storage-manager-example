@@ -4,17 +4,17 @@ import './AppSample.css';
 
 const testItems = [
     {
-      id: 1,
-      value: '777',
-      description: 'test item 1'
+        id: 1,
+        value: '777',
+        description: 'test item 1'
     }, {
-      id: 2,
-      value: '888',
-      description: 'test item 2'
+        id: 2,
+        value: '888',
+        description: 'test item 2'
     }, {
-      id: 3,
-      value: '999',
-      description: 'test item 3'
+        id: 3,
+        value: '999',
+        description: 'test item 3'
     }
 ]
 
@@ -67,7 +67,7 @@ const cKeys = {
 };
 
 const rValue = {
-    appendItem: { new_item : { desc: 'new test item insert' } },
+    appendItem: { new_item: { desc: 'new test item insert' } },
     updateItemInItem: {
         id: 1,
         value: '015',
@@ -81,7 +81,7 @@ class AppSample extends Component {
         super(props);
 
         console.log('Storage: ', Storage);
-        
+
         this.state = {
             parentKey: 'web-storage-manager-sample',
             isEncoded: false,
@@ -115,7 +115,7 @@ class AppSample extends Component {
 
         if (this.state.isEncoded) {
             Storage.setEncodeItem(this.state.parentKey, val);
-        }else{
+        } else {
             Storage.setItem(this.state.parentKey, val);
         }
     }
@@ -123,11 +123,12 @@ class AppSample extends Component {
     setMultiple(e) {
 
         let defaultJson = this.state.defaultJson;
-        let val = JSON.parse(defaultJson);
+        let val = JSON.parse(defaultJson)['Set Multiple'];
 
         if (this.state.isEncoded) {
             Storage.setEncodeMultiple(val);
-        }else{
+        } else {
+            console.log(`Storage.setMultiple(val): `, val);
             Storage.setMultiple(val);
         }
     }
@@ -148,11 +149,11 @@ class AppSample extends Component {
         let attrib = cKeysObj.attrib;
 
         console.log(`attrib: ${attrib} - keys: `, keys)
-        
+
         let rValue = this.state.rValue;
         let val = JSON.parse(rValue);
 
-        console.log(`val: `, val)
+        console.log(`updateItemInItem: `, val)
         Storage.updateItemInItem(this.state.parentKey, keys, val, attrib);
     }
 
@@ -160,7 +161,7 @@ class AppSample extends Component {
 
         this.setState({ parentKey: e.target.value });
     }
-    
+
     isEncoded(e) {
         this.setState({ isEncoded: e.target.checked });
     }
@@ -177,7 +178,7 @@ class AppSample extends Component {
                 <br /> <br /> */}
                 <label className="InputSubTitle"> Parent Key: </label>
                 <input className="ParentKey" value={this.state.parentKey} onChange={this.parentKey.bind(this)} />
-                
+
                 <label className="InputSubTitle"> Encoded: </label>
                 <input className="ParentKey" type={"checkbox"} value={this.state.isEncoded} onChange={this.isEncoded.bind(this)} />
 
@@ -191,7 +192,7 @@ class AppSample extends Component {
                 <button className={"DefaultButton"} onClick={this.setMultiple.bind(this)} >
                     Set Multiple
                 </button>
-                <div>    
+                <div>
                     <br />
                     <label className="InputSubTitle"> Child Keys: Must an array. Separated by ',' ex: key1, key2, key3 </label>
                     <br />
