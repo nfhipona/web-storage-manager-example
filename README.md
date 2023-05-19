@@ -4,9 +4,9 @@ Web utility storage manager to handle save, update and data purge
 
 [npm_url]: https://www.npmjs.com/package/web-storage-manager
 
-## Demo
+## Repo
 
-[Demo Page](https://github.com/nferocious76/web-storage-manager-example)
+[GitHub](https://github.com/nferocious76/web-storage-manager#readme)
 
 ## Installation
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { LocalStorage } from 'web-storage-manager';
+import { SessionStorage } from 'web-storage-manager';
 import './AppSample.css';
 
 const testItems = [
@@ -80,7 +80,7 @@ class AppSample extends Component {
     constructor(props) {
         super(props);
 
-        console.log('LocalStorage: ', LocalStorage);
+        console.log('SessionStorage: ', SessionStorage);
 
         this.state = {
             parentKey: 'web-storage-manager-sample',
@@ -90,12 +90,12 @@ class AppSample extends Component {
             rValue: JSON.stringify(rValue, null, 4),
         }
 
-        let stored = LocalStorage.hasData(this.state.parentKey);
+        let stored = SessionStorage.hasData(this.state.parentKey);
         if (!stored) {
-            LocalStorage.setItem(this.state.parentKey, defaultJson);
+            SessionStorage.setItem(this.state.parentKey, defaultJson);
         }
 
-        const sampleData = LocalStorage.getItem(this.state.parentKey);
+        const sampleData = SessionStorage.getItem(this.state.parentKey);
         console.log('Sample data: ', sampleData);
     }
 
@@ -117,9 +117,9 @@ class AppSample extends Component {
         let val = JSON.parse(defaultJson);
 
         if (this.state.isEncoded) {
-            LocalStorage.setEncodeItem(this.state.parentKey, val);
+            SessionStorage.setEncodeItem(this.state.parentKey, val);
         } else {
-            LocalStorage.setItem(this.state.parentKey, val);
+            SessionStorage.setItem(this.state.parentKey, val);
         }
     }
 
@@ -129,10 +129,10 @@ class AppSample extends Component {
         let val = JSON.parse(defaultJson)['Set Multiple'];
 
         if (this.state.isEncoded) {
-            LocalStorage.setEncodeMultiple(val);
+            SessionStorage.setEncodeMultiple(val);
         } else {
-            console.log(`LocalStorage.setMultiple(val): `, val);
-            LocalStorage.setMultiple(val);
+            console.log(`SessionStorage.setMultiple(val): `, val);
+            SessionStorage.setMultiple(val);
         }
     }
 
@@ -141,7 +141,7 @@ class AppSample extends Component {
         let rValue = this.state.rValue;
         let val = JSON.parse(rValue);
 
-        LocalStorage.appendItem(this.state.parentKey, val);
+        SessionStorage.appendItem(this.state.parentKey, val);
     }
 
     updateItemInItem(e) {
@@ -151,20 +151,12 @@ class AppSample extends Component {
         let keyPath = cKeysObj.keyPath;
         let attrib = cKeysObj.attrib;
 
-        console.log(`attrib: ${attrib} - keyPath: `, keyPath);
+        console.log(`attrib: ${attrib} - keys: `, keyPath)
 
         let rValue = this.state.rValue;
         let val = JSON.parse(rValue);
-        let newVal = {
-            ...val,
-            updateItemInItem: {
-                id: 1,
-                value: 192,
-                description: 'test item 151 to 192'
-            }
-        };
-        console.log(`updateItemInItem: `, newVal);
-        LocalStorage.updateItemInItem(keyPath, newVal, attrib);
+        let newVal = { ...val.updateItemInItem, value: 192 };
+        SessionStorage.updateItemInItem(keyPath, newVal, attrib);
     }
 
     parentKey(e) {
@@ -185,7 +177,7 @@ class AppSample extends Component {
         return (
             <div className="AppSample">
                 <br /> <br />
-                <label className="InputTitle"> JSON Sample Using Local Storage: </label>
+                <label className="InputTitle"> JSON Sample Using Session Storage: </label>
                 <br /> <br />
                 <br /> <br />
                 <label className="InputSubTitle"> Parent Key: </label>
